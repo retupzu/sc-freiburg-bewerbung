@@ -1,0 +1,76 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 1 /Kids [3 0 R] >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 1813 >>
+stream
+q
+0.07 0.07 0.07 rg
+36 740 523 56 re f
+Q
+BT /F1 24 Tf 48 774 Td (SCF Ecommerce KPI Dashboard) Tj ET
+BT /F1 11 Tf 48 752 Td (Revenue, orders, AOV, conversion, return rate and matchday comparison.) Tj ET
+0.72 0.12 0.14 rg
+48 676 116 52 re f
+168 676 116 52 re f
+288 676 116 52 re f
+408 676 116 52 re f
+0 0 0 rg
+BT /F1 10 Tf 60 710 Td (Revenue) Tj ET
+BT /F1 17 Tf 60 690 Td (59.885 EUR) Tj ET
+BT /F1 10 Tf 180 710 Td (Orders) Tj ET
+BT /F1 17 Tf 180 690 Td (911) Tj ET
+BT /F1 10 Tf 300 710 Td (AOV) Tj ET
+BT /F1 17 Tf 300 690 Td (66 EUR) Tj ET
+BT /F1 10 Tf 420 710 Td (Conversion) Tj ET
+BT /F1 17 Tf 420 690 Td (5.0%) Tj ET
+BT /F1 13 Tf 48 648 Td (Category revenue) Tj ET
+BT /F1 11 Tf 56 626 Td (Trikots) Tj ET
+BT /F1 11 Tf 180 626 Td (39.330 EUR) Tj ET
+BT /F1 11 Tf 56 606 Td (Accessories) Tj ET
+BT /F1 11 Tf 180 606 Td (14.355 EUR) Tj ET
+BT /F1 11 Tf 56 586 Td (Kids) Tj ET
+BT /F1 11 Tf 180 586 Td (6.200 EUR) Tj ET
+BT /F1 13 Tf 310 648 Td (Revenue by date) Tj ET
+BT /F1 11 Tf 318 626 Td (2026-01-18) Tj ET
+BT /F1 11 Tf 418 626 Td (13.165 EUR) Tj ET
+BT /F1 11 Tf 318 606 Td (2026-01-22) Tj ET
+BT /F1 11 Tf 418 606 Td (5.410 EUR) Tj ET
+BT /F1 11 Tf 318 586 Td (2026-01-26) Tj ET
+BT /F1 11 Tf 418 586 Td (6.340 EUR) Tj ET
+BT /F1 11 Tf 318 566 Td (2026-02-01) Tj ET
+BT /F1 11 Tf 418 566 Td (14.005 EUR) Tj ET
+BT /F1 11 Tf 318 546 Td (2026-02-06) Tj ET
+BT /F1 11 Tf 418 546 Td (5.855 EUR) Tj ET
+BT /F1 11 Tf 318 526 Td (2026-02-15) Tj ET
+BT /F1 11 Tf 418 526 Td (15.110 EUR) Tj ET
+BT /F1 13 Tf 48 490 Td (Matchday comparison) Tj ET
+BT /F1 11 Tf 56 468 Td (Matchday revenue: 42.280 EUR) Tj ET
+BT /F1 11 Tf 56 448 Td (Non-matchday revenue: 17.605 EUR) Tj ET
+BT /F1 11 Tf 56 428 Td (Return rate: 4.5%) Tj ET
+BT /F1 10 Tf 48 82 Td (Created for the application portfolio website. Sample data for presentation purposes.) Tj ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2176
+%%EOF
