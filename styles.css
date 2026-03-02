@@ -19,7 +19,7 @@
   --radius-xl: 34px;
   --radius-lg: 24px;
   --radius-md: 18px;
-  --site-width: min(1220px, calc(100% - 32px));
+  --site-width: min(1320px, calc(100% - 32px));
   --title-font: "Space Grotesk", sans-serif;
   --body-font: "Inter", sans-serif;
 }
@@ -312,8 +312,8 @@ body:not(.is-scrolling-down) .site-header {
 
 .hero {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 26px;
+  grid-template-columns: 1.18fr 0.82fr;
+  gap: 22px;
   padding: 28px 0 0;
 }
 
@@ -338,26 +338,26 @@ h4 {
   margin: 0;
   font-family: var(--title-font);
   line-height: 1.06;
-  text-wrap: balance;
+  text-wrap: pretty;
   hyphens: none;
   overflow-wrap: normal;
   word-break: normal;
 }
 
 h1 {
-  max-width: 14ch;
-  font-size: clamp(2.35rem, 4.9vw, 4.3rem);
+  max-width: 18ch;
+  font-size: clamp(2.05rem, 4vw, 3.7rem);
   letter-spacing: -0.03em;
 }
 
 h2 {
-  max-width: 20ch;
-  font-size: clamp(1.65rem, 3.2vw, 2.55rem);
+  max-width: 26ch;
+  font-size: clamp(1.42rem, 2.5vw, 2.08rem);
   letter-spacing: -0.02em;
 }
 
 h3 {
-  font-size: clamp(1.12rem, 1.8vw, 1.45rem);
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
 }
 
 .hero__lead,
@@ -375,8 +375,8 @@ h3 {
 }
 
 .hero__lead {
-  max-width: 60ch;
-  font-size: 0.98rem;
+  max-width: 68ch;
+  font-size: 0.97rem;
 }
 
 .hero__facts,
@@ -579,11 +579,11 @@ h3 {
   display: grid;
   gap: 10px;
   margin-bottom: 22px;
-  max-width: min(100%, 980px);
+  max-width: min(100%, 1120px);
 }
 
 .profile-grid {
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1.32fr 0.68fr;
 }
 
 .resume-board {
@@ -696,7 +696,7 @@ h3 {
 .contact-panel h3,
 .faq-trigger {
   line-height: 1.08;
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 
 .portfolio-card p,
@@ -1074,6 +1074,20 @@ h3 {
 }
 
 @media (max-width: 1120px) {
+  h1 {
+    max-width: none;
+    font-size: clamp(1.92rem, 4.8vw, 3.15rem);
+  }
+
+  h2 {
+    max-width: none;
+    font-size: clamp(1.34rem, 3.2vw, 1.9rem);
+  }
+
+  .section-heading {
+    max-width: 100%;
+  }
+
   .hero,
   .profile-grid,
   .resume-board,
@@ -1157,18 +1171,18 @@ h3 {
 
   h1 {
     max-width: none;
-    font-size: clamp(1.95rem, 7.4vw, 3rem);
-    line-height: 1.08;
+    font-size: clamp(1.72rem, 6.6vw, 2.45rem);
+    line-height: 1.1;
   }
 
   h2 {
     max-width: none;
-    font-size: clamp(1.4rem, 5.6vw, 2rem);
-    line-height: 1.1;
+    font-size: clamp(1.24rem, 4.9vw, 1.7rem);
+    line-height: 1.12;
   }
 
   h3 {
-    font-size: clamp(1.05rem, 4vw, 1.28rem);
+    font-size: clamp(1rem, 3.4vw, 1.18rem);
   }
 
   .hero__facts {
