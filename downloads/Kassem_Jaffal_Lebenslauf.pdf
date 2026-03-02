@@ -15,7 +15,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
 endobj
 6 0 obj
-<< /Length 2995 >>
+<< /Length 3113 >>
 stream
 q
 0.05 0.05 0.05 rg
@@ -45,6 +45,7 @@ BT /F2 14 Tf 48 418 Td (Projektbeispiele) Tj ET
 BT /F1 10 Tf 48 400 Td (KPI Dashboard: Umsatz, AOV, Conversion, Retourenquote und Matchday-Vergleich.) Tj ET
 BT /F1 10 Tf 48 386 Td (Interaktive Shop-Demo: Produktkarten, Suche, Filter, Warenkorb und vorbereiteter Checkout.) Tj ET
 BT /F1 10 Tf 48 372 Td (Matchday-Funnel: Content-Route vom Teaser bis zum Sale mit Vereins- und Kampagnenbezug.) Tj ET
+BT /F1 10 Tf 48 358 Td (Social-Funnel: Landingpage mit Lead-Capture und vorbereiteter Welcome-Mail-Automation.) Tj ET
 BT /F2 14 Tf 48 342 Td (Kenntnisse) Tj ET
 BT /F1 10 Tf 48 324 Td (Interesse an E-Commerce, Online-Shops und digitalen Geschaeftsmodellen) Tj ET
 BT /F1 10 Tf 48 310 Td (Sorgfaeltige und strukturierte Arbeitsweise, technisches Grundverstaendnis) Tj ET
@@ -69,5 +70,5 @@ xref
 trailer
 << /Size 7 /Root 1 0 R >>
 startxref
-3443
+3561
 %%EOF

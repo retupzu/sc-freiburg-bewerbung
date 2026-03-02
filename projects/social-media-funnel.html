@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Media Funnel | Kassem Jaffal</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../projects.css" />
+  </head>
+  <body class="project-page">
+    <div class="project-shell">
+      <nav class="subnav" aria-label="Unterseiten-Navigation">
+        <a href="../index.html">Zur Startseite</a>
+        <div class="subnav__links">
+          <a href="mock-fanshop.html">Shop-Demo</a>
+          <a href="matchday-funnel.html">Matchday-Funnel</a>
+          <a href="checkout.html">Checkout</a>
+        </div>
+      </nav>
+
+      <section class="project-hero">
+        <div class="project-hero__copy">
+          <p class="eyebrow">Projekt 04 · CRM / Growth</p>
+          <h1>Social Media Funnel mit Newsletter-Capture</h1>
+          <p class="project-copy">
+            Dieses Projekt übersetzt Social-Media-Interesse in eine
+            Landingpage, die Leads sammelt, Zielgruppen einordnet und eine
+            professionelle Welcome-Mail-Automation vorbereitet. So wird aus
+            Aufmerksamkeit ein CRM-Einstieg.
+          </p>
+          <div class="button-row">
+            <a class="button button--primary" href="#newsletterFlow">Newsletter testen</a>
+            <a class="button button--secondary" href="../downloads/Kassem_Jaffal_Lebenslauf.pdf">Lebenslauf PDF</a>
+          </div>
+        </div>
+
+        <div class="project-hero__visual">
+          <img src="../assets/social-funnel.svg" alt="Visualisierung eines Social Media Funnels" />
+        </div>
+      </section>
+
+      <section class="project-panel">
+        <p class="eyebrow">Performance Snapshot</p>
+        <h2>Was dieses Projekt demonstriert</h2>
+        <div class="newsletter-kpis">
+          <article class="dashboard-metric">
+            <span class="dashboard-metric__label">Lead Capture</span>
+            <span class="dashboard-metric__value" id="newsletterCount">0</span>
+          </article>
+          <article class="dashboard-metric">
+            <span class="dashboard-metric__label">Channel Split</span>
+            <span class="dashboard-metric__value">3</span>
+          </article>
+          <article class="dashboard-metric">
+            <span class="dashboard-metric__label">Welcome Flow</span>
+            <span class="dashboard-metric__value">Ready</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="project-panel" id="newsletterFlow">
+        <p class="eyebrow">Landingpage</p>
+        <h2>Social Hook, E-Mail-Capture und CRM-Einstieg</h2>
+        <div class="newsletter-hero">
+          <article class="checkout-box">
+            <p class="eyebrow">Hook</p>
+            <h3>Hol dir Matchday-Drops, exklusive Vorab-Infos und Social-Only-Angebote</h3>
+            <p class="project-copy">
+              Der Text ist bewusst wie eine moderne E-Commerce-Landingpage formuliert:
+              klare Benefits, kurze Reibung und direkter Mehrwert für Fans, die näher
+              an Shop-Aktionen und neuen Kollektionen sein wollen.
+            </p>
+
+            <form class="newsletter-form" id="newsletterForm">
+              <label>
+                <span class="checkout-label">Name</span>
+                <input id="newsletterName" type="text" placeholder="Vorname Nachname" />
+              </label>
+              <label>
+                <span class="checkout-label">E-Mail-Adresse</span>
+                <input id="newsletterEmail" type="email" placeholder="name@example.com" />
+              </label>
+              <label>
+                <span class="checkout-label">Primärer Kanal</span>
+                <select id="newsletterChannel">
+                  <option>Instagram</option>
+                  <option>TikTok</option>
+                  <option>Newsletter Landingpage</option>
+                </select>
+              </label>
+              <button class="button button--primary" id="newsletterSubmit" type="submit">Zum Newsletter anmelden</button>
+            </form>
+          </article>
+
+          <article class="checkout-box">
+            <div class="status-box" id="newsletterStatus">
+              <p>Neue Leads werden lokal gespeichert. Mit EmailJS und einem Save-Endpoint kann daraus ein echter Newsletter-Workflow werden.</p>
+            </div>
+
+            <div class="audience-panel">
+              <p class="eyebrow">Aktuelle Demo-Leads</p>
+              <div class="audience-list" id="audienceList"></div>
+            </div>
+
+            <article class="email-preview">
+              <p class="eyebrow">Welcome-Mail Vorschau</p>
+              <h3>Willkommen im Matchday Insider Club</h3>
+              <div class="email-preview__meta">
+                <span>An: <strong id="welcomePreviewName">Max</strong></span>
+                <span>Betreff: Dein Zugang zu exklusiven Matchday-Drops</span>
+              </div>
+              <p>Danke für deine Anmeldung. Ab jetzt erhältst du Vorab-Infos zu Drops, Social-Only-Angeboten, Matchday-Bundles und relevanten Produktnews.</p>
+            </article>
+          </article>
+        </div>
+      </section>
+
+      <section class="project-panel">
+        <p class="eyebrow">Funnel-Architektur</p>
+        <h2>Vom Social Clip bis zur E-Mail-Automation</h2>
+        <div class="crm-grid">
+          <article class="crm-card">
+            <span class="insight-card__kicker">1 · Hook</span>
+            <h3>Shortform Content</h3>
+            <p>Kurze Reels oder Storys mit Produkt, Drop oder Matchday-Moment erzeugen Aufmerksamkeit und Klicks.</p>
+          </article>
+          <article class="crm-card">
+            <span class="insight-card__kicker">2 · Landing</span>
+            <h3>E-Mail-Capture</h3>
+            <p>Die Landingpage reduziert Reibung, erklärt den Nutzen und sammelt strukturierte Leads für CRM und Newsletter.</p>
+          </article>
+          <article class="crm-card">
+            <span class="insight-card__kicker">3 · Activation</span>
+            <h3>Welcome-Mail</h3>
+            <p>Nach der Anmeldung startet ein professioneller Erstkontakt, der Bindung, Rückkehr und spätere Shop-Besuche erhöht.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="project-panel">
+        <p class="eyebrow">Warum das relevant ist</p>
+        <h2>Warum dieses Projekt gut zu E-Commerce passt</h2>
+        <div class="timeline-flow">
+          <div class="flow-row">
+            <strong>Mehr als Social</strong>
+            <p>Das Projekt zeigt nicht nur Content-Denken, sondern auch Lead-Aufbau, Segmentierung und CRM-Logik.</p>
+          </div>
+          <div class="flow-row">
+            <strong>Direkte Shop-Nähe</strong>
+            <p>Newsletter und Social Funnels lassen sich mit neuen Drops, Aktionen, Matchdays und Sortiments-Highlights verbinden.</p>
+          </div>
+          <div class="flow-row">
+            <strong>Professionelle Erweiterbarkeit</strong>
+            <p>Mit einem Save-Endpoint und EmailJS kann der Demo-Flow in einen echten, produktiven Prozess überführt werden.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="../newsletter-config.js"></script>
+    <script src="../newsletter.js"></script>
+  </body>
+</html>

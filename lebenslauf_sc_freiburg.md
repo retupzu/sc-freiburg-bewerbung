@@ -4,7 +4,7 @@ Neuenburgerstraße 5, 79115 Freiburg
 Telefon: 0174 9683772  
 E-Mail: Hassan1.jaffal1@outlook.de  
 Bewerbungswebsite / Portfolio: `https://retupzu.github.io/sc-freiburg-bewerbung/`  
-Projektbeispiele auf der Website: KPI Dashboard, interaktive Shop-Demo, Matchday-Funnel
+Projektbeispiele auf der Website: KPI Dashboard, interaktive Shop-Demo, Matchday-Funnel, Social Media Funnel
 
 ## Kurzprofil
 
@@ -27,8 +27,9 @@ Selbstständige Beschäftigung mit digitalen Brands, Produktideen, Social Media 
 
 Projektbeispiele:
 - KPI Dashboard für Umsatz, AOV, Conversion, Retourenquote und Matchday-Vergleich
-- Interaktive Shop-Demo mit Produktdarstellung, Warenkorb, Checkout-Flow und vorbereiteter Stripe-Anbindung
+- Interaktive Shop-Demo mit Produktdarstellung, Warenkorb, Checkout-Flow sowie vorbereiteter Stripe- und PayPal-Anbindung
 - Matchday-Funnel für Social Content, Angebotsseiten und Conversion-Denken
+- Social-Media-Funnel mit Landingpage, Newsletter-Capture und vorbereiteter Welcome-Mail-Automation
 
 ## Kenntnisse
 

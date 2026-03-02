@@ -1,12 +1,15 @@
 const SHOP_STORAGE_KEY = "scf_demo_cart";
+const PAYMENT_METHOD_KEY = "scf_demo_payment_method";
 
 const SHOP_PRODUCTS = [
   {
     id: "home-jersey-26",
     title: "Home Jersey 26",
     price: 89,
+    compareAt: 99,
     tag: "Matchday",
     category: "jersey",
+    featured: true,
     image: "../assets/product-jersey.jpg",
     alt: "Rotes Jersey als Produktfoto",
     rating: "4.9 / 5",
@@ -21,11 +24,34 @@ const SHOP_PRODUCTS = [
     ]
   },
   {
+    id: "away-jersey-night",
+    title: "Away Jersey Night",
+    price: 84,
+    compareAt: 94,
+    tag: "Drop",
+    category: "jersey",
+    featured: true,
+    image: "../assets/product-jersey.jpg",
+    alt: "Trikot als Demo für Away Jersey",
+    rating: "4.8 / 5",
+    colors: ["Weiß", "Schwarz"],
+    sizes: ["S", "M", "L", "XL"],
+    description:
+      "Zweites Trikot als Beispiel für eine saisonale Produktlinie mit klarer Hero-Platzierung und Preislogik.",
+    bullets: [
+      "Kategorie: Trikot",
+      "Für Launches und Saisondrops",
+      "Klar auf Landingpages einsetzbar"
+    ]
+  },
+  {
     id: "matchday-scarf",
     title: "Matchday Scarf",
     price: 29,
+    compareAt: 34,
     tag: "Fanwear",
     category: "accessories",
+    featured: true,
     image: "../assets/product-scarf.jpg",
     alt: "Schal als Beispielprodukt",
     rating: "4.8 / 5",
@@ -40,11 +66,34 @@ const SHOP_PRODUCTS = [
     ]
   },
   {
+    id: "blackout-hoodie",
+    title: "Blackout Hoodie",
+    price: 69,
+    compareAt: 79,
+    tag: "Core",
+    category: "lifestyle",
+    featured: true,
+    image: "../assets/product-rack.jpg",
+    alt: "Kleidung auf Kleiderständer als Hoodie-Demo",
+    rating: "4.8 / 5",
+    colors: ["Schwarz", "Grau"],
+    sizes: ["S", "M", "L", "XL"],
+    description:
+      "Lifestyle-Piece für Fans, die ein reduziertes, modernes Vereinsprodukt mit Alltagsbezug suchen.",
+    bullets: [
+      "Kategorie: Hoodie",
+      "Ideal für Daily Wear",
+      "Stark für Editorial Sections"
+    ]
+  },
+  {
     id: "stadium-runner",
     title: "Stadium Runner",
     price: 74,
+    compareAt: 89,
     tag: "Lifestyle",
     category: "lifestyle",
+    featured: false,
     image: "../assets/product-sneaker.jpg",
     alt: "Sneaker als Lifestyle-Produkt",
     rating: "4.7 / 5",
@@ -62,19 +111,63 @@ const SHOP_PRODUCTS = [
     id: "city-supporter-bag",
     title: "City Supporter Bag",
     price: 34,
+    compareAt: 39,
     tag: "Daily",
     category: "accessories",
+    featured: false,
     image: "../assets/product-rack.jpg",
     alt: "Produktfoto von Kleidung und Stofftaschen",
     rating: "4.8 / 5",
     colors: ["Natur", "Schwarz"],
     sizes: ["One Size"],
     description:
-      "Alltagsnahes Merch-Produkt für Fans, die Verein, Stil und Nutzwert in einem moderneren Sortiment verbinden wollen.",
+      "Alltagsnahes Merch-Produkt für Fans, die Verein, Stil und Nutzwert in einem modernen Sortiment verbinden wollen.",
     bullets: [
       "Kategorie: Tasche",
       "Gute Geschenkoption",
       "Alltagsprodukt mit Fanbezug"
+    ]
+  },
+  {
+    id: "stadium-cap",
+    title: "Stadium Cap",
+    price: 24,
+    compareAt: 29,
+    tag: "Accessory",
+    category: "accessories",
+    featured: false,
+    image: "../assets/product-scarf.jpg",
+    alt: "Accessoire als Demo für eine Cap",
+    rating: "4.6 / 5",
+    colors: ["Schwarz", "Rot"],
+    sizes: ["One Size"],
+    description:
+      "Leichtes Zusatzprodukt für Bundles, Spieltagssortimente und Shop-Aktionen mit niedriger Kaufbarriere.",
+    bullets: [
+      "Kategorie: Cap",
+      "Impulsstarkes Add-on",
+      "Gut für Aktionsbanner"
+    ]
+  },
+  {
+    id: "travel-tumbler",
+    title: "Travel Tumbler",
+    price: 19,
+    compareAt: 24,
+    tag: "Gift",
+    category: "accessories",
+    featured: false,
+    image: "../assets/mock-fanshop.jpg",
+    alt: "Shop-Visual als Demo für ein Geschenkprodukt",
+    rating: "4.7 / 5",
+    colors: ["Schwarz", "Silber"],
+    sizes: ["450 ml"],
+    description:
+      "Kleiner Geschenkartikel für Aktionsseiten, Geschenk-Guides und Merch-Kombinationen mit höherem Warenkorbwert.",
+    bullets: [
+      "Kategorie: Geschenkartikel",
+      "Niedrige Einstiegshürde",
+      "Gut für Geschenk-Guides"
     ]
   }
 ];
@@ -117,6 +210,14 @@ function getVariantLabel(item) {
   return parts.length ? parts.join(" / ") : "Standard";
 }
 
+function getActivePaymentMethod() {
+  return sessionStorage.getItem(PAYMENT_METHOD_KEY) || "stripe";
+}
+
+function setActivePaymentMethod(method) {
+  sessionStorage.setItem(PAYMENT_METHOD_KEY, method);
+}
+
 function cartSubtotal(cart) {
   return cart.reduce((total, item) => {
     const product = getProduct(item.id);
@@ -126,6 +227,14 @@ function cartSubtotal(cart) {
 
 function formatCurrency(value) {
   return `${value.toFixed(2).replace(".", ",")} EUR`;
+}
+
+function normalize(text) {
+  return (text || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
 }
 
 function showToast(message) {
@@ -196,12 +305,34 @@ function closeElement(element) {
   }
 }
 
-function normalize(text) {
-  return (text || "")
-    .trim()
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+function productCardMarkup(product) {
+  const compareMarkup = product.compareAt
+    ? `<span class="shop-card__compare">${formatCurrency(product.compareAt)}</span>`
+    : "";
+
+  return `
+    <img src="${product.image}" alt="${product.alt}" loading="lazy" />
+    <div class="shop-card__topline">
+      <span class="shop-card__tag">${product.tag}</span>
+      <span class="shop-card__rating">${product.rating}</span>
+    </div>
+    <h3>${product.title}</h3>
+    <p>${product.description}</p>
+    <div class="product-meta">
+      ${product.bullets.slice(0, 2).map((item) => `<span class="product-chip">${item}</span>`).join("")}
+    </div>
+    <div class="shop-card__meta">
+      <div class="shop-card__price-group">
+        <span class="shop-card__price">${formatCurrency(product.price)}</span>
+        ${compareMarkup}
+      </div>
+      <span class="shop-toolbar__hint">${product.category}</span>
+    </div>
+    <div class="shop-card__actions">
+      <button class="button button--card" type="button" data-details="${product.id}">Details</button>
+      <button class="button button--primary" type="button" data-add="${product.id}">In den Warenkorb</button>
+    </div>
+  `;
 }
 
 function renderShopProducts() {
@@ -249,26 +380,7 @@ function renderShopProducts() {
       product.colors.join(" "),
       product.sizes.join(" ")
     ].join(" ");
-    card.innerHTML = `
-      <img src="${product.image}" alt="${product.alt}" loading="lazy" />
-      <div class="shop-card__topline">
-        <span class="shop-card__tag">${product.tag}</span>
-        <span class="shop-card__rating">${product.rating}</span>
-      </div>
-      <h3>${product.title}</h3>
-      <p>${product.description}</p>
-      <div class="product-meta">
-        ${product.bullets.slice(0, 2).map((item) => `<span class="product-chip">${item}</span>`).join("")}
-      </div>
-      <div class="shop-card__meta">
-        <span class="shop-card__price">${formatCurrency(product.price)}</span>
-        <span class="shop-toolbar__hint">${product.category}</span>
-      </div>
-      <div class="shop-card__actions">
-        <button class="button button--card" type="button" data-details="${product.id}">Details</button>
-        <button class="button button--primary" type="button" data-add="${product.id}">In den Warenkorb</button>
-      </div>
-    `;
+    card.innerHTML = productCardMarkup(product);
     grid.appendChild(card);
   });
 
@@ -305,6 +417,40 @@ function renderShopProducts() {
   applyFilters();
 }
 
+function renderRecommendedProducts() {
+  const grid = document.getElementById("recommendedGrid");
+  if (!grid) {
+    return;
+  }
+
+  grid.innerHTML = SHOP_PRODUCTS.filter((product) => product.featured)
+    .slice(0, 3)
+    .map(
+      (product) => `
+        <article class="recommendation-card">
+          <img src="${product.image}" alt="${product.alt}" loading="lazy" />
+          <div class="recommendation-card__copy">
+            <span class="shop-card__tag">${product.tag}</span>
+            <h3>${product.title}</h3>
+            <p>${product.description}</p>
+            <div class="summary-line">
+              <span>${formatCurrency(product.price)}</span>
+              <button class="button button--card" type="button" data-add="${product.id}">Quick Add</button>
+            </div>
+          </div>
+        </article>
+      `
+    )
+    .join("");
+
+  grid.querySelectorAll("[data-add]").forEach((button) => {
+    button.addEventListener("click", () => {
+      addToCart(button.dataset.add);
+      openElement(document.getElementById("cartDrawerShell"));
+    });
+  });
+}
+
 function renderProductModal(productId) {
   const product = getProduct(productId);
   const shell = document.getElementById("productModalShell");
@@ -334,19 +480,30 @@ function renderProductModal(productId) {
         <div class="product-meta">
           ${product.bullets.map((item) => `<span class="product-chip">${item}</span>`).join("")}
         </div>
-        <div>
-          <strong>${formatCurrency(product.price)}</strong>
+        <div class="shop-card__price-group">
+          <strong class="shop-card__price">${formatCurrency(product.price)}</strong>
+          ${product.compareAt ? `<span class="shop-card__compare">${formatCurrency(product.compareAt)}</span>` : ""}
         </div>
         <div class="variant-block">
           <p class="eyebrow">Größe</p>
-          <div class="variant-row" id="sizeRow">
-            ${product.sizes.map((size) => `<button class="size-chip${size === selectedSize ? " is-active" : ""}" type="button" data-size="${size}">${size}</button>`).join("")}
+          <div class="variant-row">
+            ${product.sizes
+              .map(
+                (size) =>
+                  `<button class="size-chip${size === selectedSize ? " is-active" : ""}" type="button" data-size="${size}">${size}</button>`
+              )
+              .join("")}
           </div>
         </div>
         <div class="variant-block">
           <p class="eyebrow">Farbe</p>
-          <div class="variant-row" id="colorRow">
-            ${product.colors.map((color) => `<button class="color-chip${color === selectedColor ? " is-active" : ""}" type="button" data-color="${color}">${color}</button>`).join("")}
+          <div class="variant-row">
+            ${product.colors
+              .map(
+                (color) =>
+                  `<button class="color-chip${color === selectedColor ? " is-active" : ""}" type="button" data-color="${color}">${color}</button>`
+              )
+              .join("")}
           </div>
         </div>
         <div class="qty-row">
@@ -356,7 +513,7 @@ function renderProductModal(productId) {
         </div>
         <div class="button-row">
           <button class="button button--primary" type="button" id="modalAddToCart">In den Warenkorb</button>
-          <button class="button button--ghost" type="button" id="closeProductModal">Schliessen</button>
+          <button class="button button--ghost" type="button" id="closeProductModal">Schließen</button>
         </div>
       </div>
     </div>
@@ -464,6 +621,63 @@ function renderCart() {
   });
 }
 
+function updatePaymentPanels(hasItems) {
+  const methodButtons = [...document.querySelectorAll("[data-payment-method]")];
+  const stripePanel = document.getElementById("stripePanel");
+  const paypalPanel = document.getElementById("paypalPanel");
+  const activeMethod = getActivePaymentMethod();
+
+  if (!methodButtons.length || !stripePanel || !paypalPanel) {
+    return;
+  }
+
+  methodButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.paymentMethod === activeMethod);
+  });
+
+  stripePanel.hidden = activeMethod !== "stripe";
+  paypalPanel.hidden = activeMethod !== "paypal";
+
+  const paypalHint = document.getElementById("paypalHint");
+  const paypalLink = document.getElementById("paypalCheckoutLink");
+  const paypalButton = document.getElementById("paypalCheckoutButton");
+  const paypalConfigLink = (window.SHOP_CONFIG && window.SHOP_CONFIG.paypalCheckoutLink) || "";
+  const paypalNotice = (window.SHOP_CONFIG && window.SHOP_CONFIG.paypalNotice) || "";
+
+  if (!paypalHint || !paypalLink || !paypalButton) {
+    return;
+  }
+
+  if (paypalConfigLink && hasItems) {
+    paypalHint.textContent = "PayPal ist vorbereitet und kann mit einem echten Checkout-Link geöffnet werden.";
+    paypalLink.hidden = false;
+    paypalLink.href = paypalConfigLink;
+    paypalButton.hidden = true;
+    return;
+  }
+
+  paypalHint.textContent = hasItems
+    ? paypalNotice
+    : "Lege zuerst Produkte in den Demo-Warenkorb.";
+  paypalLink.hidden = true;
+  paypalButton.hidden = false;
+  paypalButton.disabled = true;
+}
+
+function bindPaymentSwitcher() {
+  const methodButtons = [...document.querySelectorAll("[data-payment-method]")];
+  if (!methodButtons.length) {
+    return;
+  }
+
+  methodButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      setActivePaymentMethod(button.dataset.paymentMethod || "stripe");
+      updatePaymentPanels(readCart().length > 0);
+    });
+  });
+}
+
 function renderCheckout() {
   const list = document.getElementById("checkoutSummary");
   const total = document.getElementById("checkoutTotal");
@@ -508,13 +722,14 @@ function renderCheckout() {
     stripeButton.onclick = () => {
       window.location.href = paymentLink;
     };
-    return;
+  } else {
+    stripeButton.disabled = true;
+    stripeButton.textContent = hasItems ? "Stripe-Link fehlt" : "Warenkorb leer";
+    stripeHint.textContent = hasItems ? notice : "Lege zuerst Produkte in den Demo-Warenkorb.";
+    stripeButton.onclick = null;
   }
 
-  stripeButton.disabled = true;
-  stripeButton.textContent = hasItems ? "Stripe-Link fehlt" : "Warenkorb leer";
-  stripeHint.textContent = hasItems ? notice : "Lege zuerst Produkte in den Demo-Warenkorb.";
-  stripeButton.onclick = null;
+  updatePaymentPanels(hasItems);
 }
 
 function bindOverlays() {
@@ -553,7 +768,9 @@ function bindOverlays() {
 
 function initShop() {
   renderShopProducts();
+  renderRecommendedProducts();
   renderCart();
+  bindPaymentSwitcher();
   renderCheckout();
   bindOverlays();
 }

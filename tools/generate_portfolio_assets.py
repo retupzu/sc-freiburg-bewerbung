@@ -391,6 +391,33 @@ def kpi_pdf_stream() -> bytes:
     return "\n".join(lines).encode("ascii")
 
 
+def kpi_pdf_insights_stream() -> bytes:
+    lines = [
+        "q",
+        pdf_fill(36, 744, 523, 56, rgb=(0.05, 0.05, 0.05)),
+        "Q",
+        pdf_text(48, 772, "KPI Dashboard - Insights & Ableitungen", size=22, font="F2"),
+        pdf_text(48, 752, "Die zweite Seite macht aus Kennzahlen konkrete Shop-Empfehlungen.", size=11),
+        pdf_text(48, 712, "1. Kategorie-Fokus", size=14, font="F2"),
+        pdf_text(48, 692, "Trikots sind die mit Abstand staerkste Kategorie und sollten auf Startseite,", size=11),
+        pdf_text(48, 676, "Landingpages und Matchday-Aktionsflaechen noch staerker priorisiert werden.", size=11),
+        pdf_text(48, 638, "2. Matchday-Effekt", size=14, font="F2"),
+        pdf_text(48, 618, "Der Umsatzsprung an Heimspieltagen spricht fuer klar getimte Angebote,", size=11),
+        pdf_text(48, 602, "Bundling, Hero-Produkte und mehr Sichtbarkeit am Spieltag.", size=11),
+        pdf_text(48, 564, "3. Conversion & Warenkorbwert", size=14, font="F2"),
+        pdf_text(48, 544, "Mit solider Conversion und gutem AOV lohnen sich Cross-Selling und Zubehör", size=11),
+        pdf_text(48, 528, "wie Schals, Caps oder Geschenkartikel als Add-on-Produkte.", size=11),
+        pdf_text(48, 490, "4. Service & Datenqualitaet", size=14, font="F2"),
+        pdf_text(48, 470, "Auch bei guter Performance bleiben Produktdaten und Retourenquote wichtige", size=11),
+        pdf_text(48, 454, "Hebel fuer ein professionelles Shop-Setup.", size=11),
+        pdf_text(48, 416, "Nutzen fuer die Bewerbung", size=14, font="F2"),
+        pdf_text(48, 396, "Das Projekt zeigt nicht nur Zahlenverstaendnis, sondern auch die Faehigkeit,", size=11),
+        pdf_text(48, 380, "Shop-Entscheidungen aus Reporting strukturiert abzuleiten.", size=11),
+        pdf_text(48, 82, "Seite 2 ergaenzt die Uebersicht um operative Prioritaeten fuer E-Commerce-Teams.", size=10),
+    ]
+    return "\n".join(lines).encode("ascii")
+
+
 def resume_pdf_stream() -> bytes:
     lines = [
         "q",
@@ -419,6 +446,7 @@ def resume_pdf_stream() -> bytes:
         pdf_text(48, 400, "KPI Dashboard: Umsatz, AOV, Conversion, Retourenquote und Matchday-Vergleich.", size=10),
         pdf_text(48, 386, "Interaktive Shop-Demo: Produktkarten, Suche, Filter, Warenkorb und vorbereiteter Checkout.", size=10),
         pdf_text(48, 372, "Matchday-Funnel: Content-Route vom Teaser bis zum Sale mit Vereins- und Kampagnenbezug.", size=10),
+        pdf_text(48, 358, "Social-Funnel: Landingpage mit Lead-Capture und vorbereiteter Welcome-Mail-Automation.", size=10),
         pdf_text(48, 342, "Kenntnisse", size=14, font="F2"),
         pdf_text(48, 324, "Interesse an E-Commerce, Online-Shops und digitalen Geschaeftsmodellen", size=10),
         pdf_text(48, 310, "Sorgfaeltige und strukturierte Arbeitsweise, technisches Grundverstaendnis", size=10),
@@ -434,7 +462,7 @@ def resume_pdf_stream() -> bytes:
 
 
 def write_pdfs() -> None:
-    (DOWNLOADS / "SCF_Ecommerce_KPI_Dashboard.pdf").write_bytes(build_pdf([kpi_pdf_stream()]))
+    (DOWNLOADS / "SCF_Ecommerce_KPI_Dashboard.pdf").write_bytes(build_pdf([kpi_pdf_stream(), kpi_pdf_insights_stream()]))
     (DOWNLOADS / "Kassem_Jaffal_Lebenslauf.pdf").write_bytes(build_pdf([resume_pdf_stream()]))
 
 

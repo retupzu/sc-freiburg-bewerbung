@@ -14,18 +14,19 @@
         <div class="subnav__links">
           <a href="mock-fanshop.html">Shop-Demo</a>
           <a href="kpi-dashboard.html">KPI Dashboard</a>
+          <a href="social-media-funnel.html">Social Funnel</a>
         </div>
       </nav>
 
       <section class="project-hero">
         <div class="project-hero__copy">
           <p class="eyebrow">Checkout Demo</p>
-          <h1>Checkout mit Stripe vorbereitet</h1>
+          <h1>Checkout mit Stripe und PayPal vorbereitet</h1>
           <p class="project-copy">
-            Diese Seite zeigt einen klaren, modernen Checkout-Aufbau für eine
-            statische Demo. Der Warenkorb bleibt lokal im Browser erhalten. Für
-            einen echten Stripe-Start muss nur noch in der Konfiguration ein
-            Payment Link hinterlegt werden.
+            Diese Seite zeigt einen sauberen, modernen Checkout-Aufbau für eine
+            statische Demo. Der Warenkorb bleibt lokal im Browser erhalten.
+            Stripe und PayPal sind so vorbereitet, dass später nur noch echte
+            Konfigurationsdaten ergänzt werden müssen.
           </p>
           <div class="button-row">
             <a class="button button--primary" href="mock-fanshop.html">Zurück zum Shop</a>
@@ -40,21 +41,21 @@
 
       <section class="project-panel">
         <p class="eyebrow">Checkout</p>
-        <h2>Bestelldaten und Zusammenfassung</h2>
+        <h2>Bestelldaten, Zusammenfassung und Zahlungswege</h2>
         <div class="checkout-layout">
           <article class="checkout-box">
             <form class="checkout-form">
               <label>
                 <span class="checkout-label">Vorname</span>
-                <input type="text" placeholder="Max" />
+                <input type="text" placeholder="Kassem" />
               </label>
               <label>
                 <span class="checkout-label">Nachname</span>
-                <input type="text" placeholder="Mustermann" />
+                <input type="text" placeholder="Jaffal" />
               </label>
               <label>
                 <span class="checkout-label">E-Mail</span>
-                <input type="email" placeholder="max@example.com" />
+                <input type="email" placeholder="name@example.com" />
               </label>
               <label>
                 <span class="checkout-label">Lieferadresse</span>
@@ -78,15 +79,31 @@
               <span>Gesamtsumme</span>
               <strong id="checkoutTotal">0,00 EUR</strong>
             </div>
-            <p class="checkout-note" id="stripeHint"></p>
-            <div class="checkout-actions">
-              <button class="button button--primary" id="stripeCheckoutButton" type="button">Stripe-Link fehlt</button>
-              <a class="button button--ghost" href="mock-fanshop.html">Weiter shoppen</a>
+
+            <div class="payment-switcher" role="tablist" aria-label="Zahlungsmethoden">
+              <button class="payment-pill is-active" type="button" data-payment-method="stripe">Stripe</button>
+              <button class="payment-pill" type="button" data-payment-method="paypal">PayPal</button>
             </div>
+
+            <div class="payment-panel" id="stripePanel">
+              <p class="checkout-note" id="stripeHint"></p>
+              <div class="checkout-actions">
+                <button class="button button--primary" id="stripeCheckoutButton" type="button">Stripe-Link fehlt</button>
+                <a class="button button--ghost" href="mock-fanshop.html">Weiter shoppen</a>
+              </div>
+            </div>
+
+            <div class="payment-panel" id="paypalPanel" hidden>
+              <p class="checkout-note" id="paypalHint"></p>
+              <div class="checkout-actions">
+                <a class="button button--primary" id="paypalCheckoutLink" href="#" hidden>Zu PayPal</a>
+                <button class="button button--secondary" id="paypalCheckoutButton" type="button" disabled>PayPal noch nicht verbunden</button>
+              </div>
+            </div>
+
             <p class="checkout-note checkout-note--warning">
-              Hinweis: Ein echter Mehrprodukt-Checkout über Stripe benötigt auf
-              GitHub Pages am einfachsten Payment Links oder einen eigenen
-              serverseitigen Checkout-Flow.
+              Hinweis: Für echte Zahlungen auf GitHub Pages werden in dieser Demo
+              Payment Links oder später eine serverseitig ergänzte Checkout-Logik benötigt.
             </p>
           </article>
         </div>

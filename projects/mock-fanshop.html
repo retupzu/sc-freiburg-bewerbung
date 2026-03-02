@@ -14,6 +14,7 @@
         <div class="subnav__links">
           <a href="kpi-dashboard.html">KPI Dashboard</a>
           <a href="matchday-funnel.html">Matchday-Funnel</a>
+          <a href="social-media-funnel.html">Social Funnel</a>
           <a href="checkout.html">Checkout</a>
         </div>
       </nav>
@@ -23,10 +24,10 @@
           <p class="eyebrow">Projekt 02 · Merchandising</p>
           <h1>Interaktive Fanshop-Demo</h1>
           <p class="project-copy">
-            Diese Demo ist wie eine moderne Shopify-Produktseite gedacht:
-            klares visuelles Merchandising, Such- und Filterfunktion, Quick
-            View, Warenkorb, Checkout-Übergang und eine statisch vorbereitete
-            Stripe-Anbindung für GitHub Pages.
+            Diese Demo ist wie eine moderne Shopify-Produktseite aufgebaut:
+            stärkeres Hero-Merchandising, mehr Sortiment, Produkt-Quick-View,
+            Warenkorb, Empfehlungen, Bundle-Logik und vorbereitete Stripe- sowie
+            PayPal-Zahlungswege für GitHub Pages.
           </p>
           <div class="button-row">
             <a class="button button--primary" href="checkout.html">Zum Checkout</a>
@@ -40,36 +41,13 @@
       </section>
 
       <section class="project-panel">
-        <p class="eyebrow">Trust Layer</p>
-        <h2>Elemente, die an echte Commerce-Seiten erinnern</h2>
-        <div class="trust-grid">
-          <article class="trust-card">
-            <strong>Schnelle Orientierung</strong>
-            <p>Suche, Filter, starke Produktbilder und klare Call-to-Actions für schnelle Entscheidungen.</p>
-          </article>
-          <article class="trust-card">
-            <strong>Warenkorb-Feedback</strong>
-            <p>Quick View, Cart Drawer und Checkout-Zusammenfassung machen die Demo interaktiv statt statisch.</p>
-          </article>
-          <article class="trust-card">
-            <strong>Shopify-Nähe</strong>
-            <p>Karten, Collection-Logik, Bewertungen, Trust-Badges und modernes Layout orientieren sich an aktuellen Shop-Mustern.</p>
-          </article>
-          <article class="trust-card">
-            <strong>Stripe-Vorbereitung</strong>
-            <p>Die Checkout-Seite ist so vorbereitet, dass nur noch ein echter Stripe Payment Link eingetragen werden muss.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="project-panel">
-        <p class="eyebrow">Collections</p>
-        <h2>Visuelle Shop-Einstiege</h2>
+        <p class="eyebrow">Featured Drop</p>
+        <h2>Hero-Produkte, die sofort Aufmerksamkeit ziehen</h2>
         <div class="collection-grid">
           <article class="collection-card">
             <img src="../assets/product-jersey.jpg" alt="Rotes Trikot als Key Visual" loading="lazy" />
             <strong>Matchday Essentials</strong>
-            <p>Produkte mit hoher Spieltags-Relevanz, klarer Startseitenwirkung und starker Emotionalität.</p>
+            <p>Produkte mit hoher Spieltags-Relevanz, klarem Startseitenfokus und starker Emotionalität.</p>
           </article>
           <article class="collection-card">
             <img src="../assets/product-scarf.jpg" alt="Schal als Merchandising-Produkt" loading="lazy" />
@@ -77,9 +55,32 @@
             <p>Zusatzprodukte für Impulskäufe, Bundles und sichtbare Aktionsflächen im Shop.</p>
           </article>
           <article class="collection-card">
-            <img src="../assets/product-rack.jpg" alt="Merchandise auf Kleiderständer" loading="lazy" />
+            <img src="../assets/product-sneaker.jpg" alt="Sneaker als Lifestyle-Produkt" loading="lazy" />
             <strong>Lifestyle & Daily Wear</strong>
-            <p>Artikel für Fans, die Verein, Alltag und Stil in einem moderneren Sortiment verbinden wollen.</p>
+            <p>Artikel für Fans, die Verein, Alltag und Stil in einem modernen Sortiment verbinden wollen.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="project-panel">
+        <p class="eyebrow">Trust Layer</p>
+        <h2>Elemente, die an echte Commerce-Seiten erinnern</h2>
+        <div class="trust-grid">
+          <article class="trust-card">
+            <strong>Schnelle Orientierung</strong>
+            <p>Suche, Filter, starke Produktbilder, Sale-Hinweise und klare Call-to-Actions für schnelle Entscheidungen.</p>
+          </article>
+          <article class="trust-card">
+            <strong>Warenkorb-Feedback</strong>
+            <p>Quick View, Variantenwahl, Cart Drawer und Checkout-Zusammenfassung machen die Demo interaktiv statt statisch.</p>
+          </article>
+          <article class="trust-card">
+            <strong>Shopify-Nähe</strong>
+            <p>Karten, Collections, Empfehlungen, Reviews und Lookbook-Bausteine orientieren sich an modernen Shop-Mustern.</p>
+          </article>
+          <article class="trust-card">
+            <strong>Payment Hooks</strong>
+            <p>Stripe und PayPal sind im Checkout professionell vorbereitet, sodass später nur noch echte Links oder IDs eingetragen werden müssen.</p>
           </article>
         </div>
       </section>
@@ -95,7 +96,7 @@
         <div class="shop-toolbar">
           <label class="search-field" for="shopSearch">
             <span>Produktsuche</span>
-            <input id="shopSearch" type="search" placeholder="z. B. Trikot, Schal, Lifestyle oder Tasche" />
+            <input id="shopSearch" type="search" placeholder="z. B. Trikot, Schal, Hoodie, Cap oder Lifestyle" />
           </label>
 
           <div class="filter-chips" aria-label="Produktkategorien">
@@ -106,13 +107,46 @@
           </div>
 
           <p class="shop-toolbar__hint">
-            Klick auf „Details“ für eine größere Produktansicht oder lege Artikel
-            direkt in den Demo-Warenkorb.
+            Klick auf „Details“ für eine größere Produktansicht oder lege Artikel direkt in den Demo-Warenkorb.
           </p>
         </div>
 
         <div class="shop-grid" id="shopGrid"></div>
         <p class="empty-state" id="shopEmptyState" hidden>Keine Produkte passen zur aktuellen Suche.</p>
+      </section>
+
+      <section class="project-panel">
+        <p class="eyebrow">Empfehlungen</p>
+        <h2>Curated Picks und Bundle-Denken</h2>
+        <div class="recommendation-grid" id="recommendedGrid"></div>
+      </section>
+
+      <section class="project-panel">
+        <p class="eyebrow">Lookbook</p>
+        <h2>Mehr Bildfläche für ein hochwertigeres Shop-Gefühl</h2>
+        <div class="lookbook-grid">
+          <article class="lookbook-card lookbook-card--wide">
+            <img src="../assets/product-rack.jpg" alt="Merchandise auf Kleiderständer" loading="lazy" />
+            <div>
+              <strong>Drop mit Sortimentsbreite</strong>
+              <p>Ein stärkerer Shop-Auftritt wirkt glaubwürdiger, wenn er nicht nur einzelne Produkte, sondern eine ganze Sortimentswelt zeigt.</p>
+            </div>
+          </article>
+          <article class="lookbook-card">
+            <img src="../assets/product-jersey.jpg" alt="Rotes Trikot als Hero-Produkt" loading="lazy" />
+            <div>
+              <strong>Hero Product</strong>
+              <p>Klare Blickführung und starke visuelle Priorität.</p>
+            </div>
+          </article>
+          <article class="lookbook-card">
+            <img src="../assets/product-scarf.jpg" alt="Schal als Zusatzprodukt" loading="lazy" />
+            <div>
+              <strong>Add-on Product</strong>
+              <p>Impulsprodukt für Aktionsflächen und Bundles.</p>
+            </div>
+          </article>
+        </div>
       </section>
 
       <section class="project-panel">

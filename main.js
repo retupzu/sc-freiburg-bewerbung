@@ -2,32 +2,54 @@ const searchInput = document.getElementById("portfolioSearch");
 const portfolioGrid = document.getElementById("portfolioGrid");
 const resultCount = document.getElementById("portfolioResultCount");
 const emptyState = document.getElementById("portfolioEmptyState");
-const chips = [...document.querySelectorAll(".chip")];
+const chips = [...document.querySelectorAll("[data-filter]")];
 const faqTriggers = [...document.querySelectorAll(".faq-trigger")];
 const progressBar = document.getElementById("scrollProgress");
 const navLinks = [...document.querySelectorAll(".site-nav__link")];
 const announcementText = document.getElementById("announcementText");
+const revealTargets = [...document.querySelectorAll("[data-reveal]")];
+const countTargets = [...document.querySelectorAll("[data-count]")];
 
 const announcements = [
-  "Interaktive Shop-Demo, Portfolio-Suche und neue Projektseiten sind live.",
-  "Lebenslauf als PDF, moderne Navigation und rechtliche Seiten sind integriert.",
-  "KPI-Dashboard, Matchday-Funnel und Commerce-UX zeigen konkrete Arbeitsproben."
+  "Mehr Produkte, Social-Funnel und modernisierte Commerce-Landingpage sind live.",
+  "Shop-Demo, KPI-Dashboard, Matchday-Funnel und CRM-Case bilden jetzt ein komplettes Portfolio.",
+  "Suchfunktion, Filter, Motion und klarere Content-Struktur sorgen für einen stärkeren Shop-Auftritt."
 ];
 
 let activeFilter = "all";
 let announcementIndex = 0;
 
+function normalize(text) {
+  return (text || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function runWithTransition(fn) {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!prefersReducedMotion && typeof document.startViewTransition === "function") {
+    document.startViewTransition(fn);
+    return;
+  }
+  fn();
+}
+
 function updateScrollProgress() {
+  if (!progressBar) {
+    return;
+  }
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;
   const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
   progressBar.style.width = `${progress}%`;
 }
 
-function normalize(text) {
-  return text.trim().toLowerCase();
-}
-
 function filterPortfolio() {
+  if (!searchInput || !portfolioGrid || !resultCount || !emptyState) {
+    return;
+  }
+
   const term = normalize(searchInput.value);
   const cards = [...portfolioGrid.querySelectorAll(".portfolio-card")];
   let matches = 0;
@@ -50,11 +72,17 @@ function filterPortfolio() {
 }
 
 function bindFilterChips() {
+  if (!chips.length) {
+    return;
+  }
+
   chips.forEach((chip) => {
     chip.addEventListener("click", () => {
-      activeFilter = chip.dataset.filter;
-      chips.forEach((button) => button.classList.toggle("is-active", button === chip));
-      filterPortfolio();
+      runWithTransition(() => {
+        activeFilter = chip.dataset.filter || "all";
+        chips.forEach((button) => button.classList.toggle("is-active", button === chip));
+        filterPortfolio();
+      });
     });
   });
 }
@@ -64,15 +92,17 @@ function bindFaq() {
     trigger.addEventListener("click", () => {
       const isOpen = trigger.getAttribute("aria-expanded") === "true";
 
-      faqTriggers.forEach((button) => {
-        button.setAttribute("aria-expanded", "false");
-        button.nextElementSibling.hidden = true;
-      });
+      runWithTransition(() => {
+        faqTriggers.forEach((button) => {
+          button.setAttribute("aria-expanded", "false");
+          button.nextElementSibling.hidden = true;
+        });
 
-      if (!isOpen) {
-        trigger.setAttribute("aria-expanded", "true");
-        trigger.nextElementSibling.hidden = false;
-      }
+        if (!isOpen) {
+          trigger.setAttribute("aria-expanded", "true");
+          trigger.nextElementSibling.hidden = false;
+        }
+      });
     });
   });
 }
@@ -83,7 +113,7 @@ function bindKeyboardShortcuts() {
       event.target instanceof HTMLElement &&
       ["INPUT", "TEXTAREA"].includes(event.target.tagName);
 
-    if (event.key === "/" && !typingTarget) {
+    if (event.key === "/" && !typingTarget && searchInput) {
       event.preventDefault();
       searchInput.focus();
       searchInput.select();
@@ -100,6 +130,10 @@ function bindSectionHighlight() {
     })
     .filter((item) => item.target);
 
+  if (!targets.length) {
+    return;
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -113,7 +147,7 @@ function bindSectionHighlight() {
         });
       });
     },
-    { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
+    { rootMargin: "-35% 0px -50% 0px", threshold: 0 }
   );
 
   sections.forEach((section) => observer.observe(section));
@@ -124,19 +158,87 @@ function startAnnouncementRotation() {
     return;
   }
 
-  setInterval(() => {
+  window.setInterval(() => {
     announcementIndex = (announcementIndex + 1) % announcements.length;
     announcementText.textContent = announcements[announcementIndex];
-  }, 3200);
+  }, 3400);
 }
 
-searchInput.addEventListener("input", filterPortfolio);
+function bindRevealObserver() {
+  if (!revealTargets.length) {
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -12% 0px", threshold: 0.12 }
+  );
+
+  revealTargets.forEach((target) => observer.observe(target));
+}
+
+function animateCounter(element) {
+  const target = Number(element.dataset.count);
+  if (!Number.isFinite(target)) {
+    return;
+  }
+
+  const duration = 900;
+  const startTime = performance.now();
+
+  function step(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const value = Math.round(target * (1 - Math.pow(1 - progress, 3)));
+    element.textContent = String(value);
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
+  }
+
+  window.requestAnimationFrame(step);
+}
+
+function bindCounters() {
+  if (!countTargets.length) {
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.45 }
+  );
+
+  countTargets.forEach((target) => observer.observe(target));
+}
+
+if (searchInput) {
+  searchInput.addEventListener("input", filterPortfolio);
+}
+
 window.addEventListener("scroll", updateScrollProgress, { passive: true });
 
 bindFilterChips();
 bindFaq();
 bindKeyboardShortcuts();
 bindSectionHighlight();
+bindRevealObserver();
+bindCounters();
 startAnnouncementRotation();
 updateScrollProgress();
 filterPortfolio();
