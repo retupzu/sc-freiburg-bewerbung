@@ -309,20 +309,34 @@ function prepareTypeScroll() {
     target.classList.add("type-scroll");
     target.textContent = "";
 
-    [...originalText].forEach((character, index) => {
-      const span = document.createElement("span");
-      span.className = "type-scroll__char";
-      span.style.setProperty("--char-index", String(index));
-      span.setAttribute("aria-hidden", "true");
+    const tokens = originalText.split(/(\s+)/);
+    let charIndex = 0;
 
-      if (character === " ") {
-        span.classList.add("type-scroll__space");
-        span.textContent = "\u00A0";
-      } else {
-        span.textContent = character;
+    tokens.forEach((token) => {
+      if (!token) {
+        return;
       }
 
-      target.appendChild(span);
+      if (/^\s+$/.test(token)) {
+        target.appendChild(document.createTextNode(token));
+        return;
+      }
+
+      const word = document.createElement("span");
+      word.className = "type-scroll__word";
+      word.setAttribute("aria-hidden", "true");
+
+      [...token].forEach((character) => {
+        const span = document.createElement("span");
+        span.className = "type-scroll__char";
+        span.style.setProperty("--char-index", String(charIndex));
+        span.setAttribute("aria-hidden", "true");
+        span.textContent = character;
+        word.appendChild(span);
+        charIndex += 1;
+      });
+
+      target.appendChild(word);
     });
   });
 }
