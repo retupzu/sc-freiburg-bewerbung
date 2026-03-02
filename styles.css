@@ -32,6 +32,13 @@ html {
   scroll-behavior: smooth;
 }
 
+body,
+p,
+li,
+figcaption {
+  hyphens: auto;
+}
+
 body {
   position: relative;
   isolation: isolate;
@@ -332,20 +339,21 @@ h4 {
   font-family: var(--title-font);
   line-height: 1.02;
   text-wrap: balance;
+  hyphens: auto;
 }
 
 h1 {
-  max-width: 12ch;
-  font-size: clamp(3.1rem, 7vw, 6rem);
+  max-width: 11ch;
+  font-size: clamp(2.7rem, 5.8vw, 5rem);
 }
 
 h2 {
-  max-width: 16ch;
-  font-size: clamp(2.1rem, 5vw, 3.8rem);
+  max-width: 15ch;
+  font-size: clamp(1.9rem, 4.2vw, 3.15rem);
 }
 
 h3 {
-  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-size: clamp(1.22rem, 2.2vw, 1.7rem);
 }
 
 .hero__lead,
@@ -363,8 +371,8 @@ h3 {
 }
 
 .hero__lead {
-  max-width: 60ch;
-  font-size: 1.04rem;
+  max-width: 57ch;
+  font-size: 1rem;
 }
 
 .hero__facts,
@@ -411,6 +419,7 @@ h3 {
 .hero__facts span {
   color: var(--muted);
   line-height: 1.55;
+  text-wrap: pretty;
 }
 
 .hero__visual {
@@ -502,6 +511,7 @@ h3 {
   margin: 0;
   color: var(--muted);
   line-height: 1.7;
+  text-wrap: pretty;
 }
 
 .hero__mosaic {
@@ -530,6 +540,7 @@ h3 {
   margin: 0;
   color: var(--muted);
   line-height: 1.65;
+  text-wrap: pretty;
 }
 
 .signal-card--wide {
@@ -651,6 +662,7 @@ h3 {
   margin: 0;
   color: var(--muted);
   line-height: 1.65;
+  text-wrap: pretty;
 }
 
 .skill-matrix {
@@ -668,6 +680,27 @@ h3 {
   background: rgba(15, 139, 76, 0.06);
   font-size: 0.92rem;
   font-weight: 600;
+}
+
+.portfolio-card h3,
+.insight-card h3,
+.trend-card h3,
+.story-card h3,
+.resume-card h3,
+.signal-card h3,
+.contact-panel h3,
+.faq-trigger {
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.portfolio-card p,
+.resume-note,
+.resume-list p,
+.contact-panel p,
+.faq-content p,
+.portfolio-card__meta {
+  text-wrap: pretty;
 }
 
 .panel,
@@ -891,7 +924,7 @@ h3 {
   background: transparent;
   cursor: pointer;
   font-family: var(--title-font);
-  font-size: 1.28rem;
+  font-size: 1.14rem;
 }
 
 .faq-trigger[aria-expanded="true"] {
@@ -1119,11 +1152,12 @@ h3 {
 
   h1 {
     max-width: none;
-    font-size: clamp(2.8rem, 12vw, 4.8rem);
+    font-size: clamp(2.3rem, 9.4vw, 4.1rem);
   }
 
   h2 {
     max-width: none;
+    font-size: clamp(1.75rem, 7.4vw, 2.45rem);
   }
 
   .hero__facts {
