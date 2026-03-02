@@ -312,7 +312,7 @@ body:not(.is-scrolling-down) .site-header {
 
 .hero {
   display: grid;
-  grid-template-columns: 1.18fr 0.82fr;
+  grid-template-columns: minmax(0, 1.34fr) minmax(300px, 0.66fr);
   gap: 22px;
   padding: 28px 0 0;
 }
@@ -322,6 +322,10 @@ body:not(.is-scrolling-down) .site-header {
 .section,
 .site-footer {
   padding: 30px;
+}
+
+.hero__copy {
+  max-width: 100%;
 }
 
 .eyebrow {
@@ -345,14 +349,14 @@ h4 {
 }
 
 h1 {
-  max-width: 18ch;
-  font-size: clamp(2.05rem, 4vw, 3.7rem);
+  max-width: 24ch;
+  font-size: clamp(1.92rem, 3.45vw, 3.28rem);
   letter-spacing: -0.03em;
 }
 
 h2 {
-  max-width: 26ch;
-  font-size: clamp(1.42rem, 2.5vw, 2.08rem);
+  max-width: 34ch;
+  font-size: clamp(1.34rem, 2.1vw, 1.82rem);
   letter-spacing: -0.02em;
 }
 
@@ -579,7 +583,14 @@ h3 {
   display: grid;
   gap: 10px;
   margin-bottom: 22px;
-  max-width: min(100%, 1120px);
+  max-width: 100%;
+}
+
+.hero__copy h1,
+.section-heading h2,
+.project-hero__copy h1,
+.project-panel > h2 {
+  max-width: 100%;
 }
 
 .profile-grid {
@@ -1075,14 +1086,18 @@ h3 {
 }
 
 @media (max-width: 1120px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
   h1 {
     max-width: none;
-    font-size: clamp(1.92rem, 4.8vw, 3.15rem);
+    font-size: clamp(1.78rem, 4.1vw, 2.72rem);
   }
 
   h2 {
     max-width: none;
-    font-size: clamp(1.34rem, 3.2vw, 1.9rem);
+    font-size: clamp(1.22rem, 2.7vw, 1.62rem);
   }
 
   .section-heading {
@@ -1172,13 +1187,13 @@ h3 {
 
   h1 {
     max-width: none;
-    font-size: clamp(1.72rem, 6.6vw, 2.45rem);
+    font-size: clamp(1.56rem, 5.7vw, 2.16rem);
     line-height: 1.1;
   }
 
   h2 {
     max-width: none;
-    font-size: clamp(1.24rem, 4.9vw, 1.7rem);
+    font-size: clamp(1.15rem, 4.2vw, 1.48rem);
     line-height: 1.12;
   }
 
